@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigdemo.demo.dao.AddressMapper">
+    <select id="selectEmployeeByAddress" resultType="com.bigdemo.demo.entity.vo.AddressAndEmployeeVO">
+        select e.employee_name,a.address_name from employee e
+        inner join address a on e.employee_id=a.employee_id
+        where a.address_name=#{addressName};
+    </select>
+
+    <select id="selectAddress" resultType="com.bigdemo.demo.entity.vo.AddressVO">
+        select distinct address_name from address;
+    </select>
+
+
+
+
+</mapper>
