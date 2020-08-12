@@ -1,0 +1,23 @@
+
+
+server:
+  serlet:
+    contex-path: /systom
+
+
+logging:
+  level:
+    root: debug
+    com.cax: debug
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sap?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 753951
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
