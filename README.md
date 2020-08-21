@@ -27,4 +27,24 @@ This is my first project!!!
       //断言
       assertEquals(employeeDtos,allAge);
     }
+    @Test
+    public void testReplaceAge() throws Exception {
+        EmployeeServiceImpl emi = new EmployeeServiceImpl();
+        Employee emt = new Employee();
+        emt.setAge(10);
+        emt.setEmId(10);
+        emt.setEmName("测试");
+        ArrayList<Employee> eml = Lists.newArrayList();
+        eml.add(emt);
+
+        Object replaceAge = Whitebox.invokeMethod(emi, "replaceAge", eml);
+
+        EmployeeDto emDto = new EmployeeDto();
+        emDto.setAge("少年");
+        emDto.setEmId(10);
+        emDto.setEmName("测试");
+        ArrayList<EmployeeDto> emDtos = Lists.newArrayList();
+        emDtos.add(emDto);
+        assertEquals(emDtos,replaceAge);
+
 ```
