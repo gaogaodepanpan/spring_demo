@@ -1,0 +1,121 @@
+es-doc-joey
+------------------------
+<agg_index_v2>  
+用于保存本地csv导入es的数据
+需要在logstash-7.6.2\bin\logstash_default.conf中指定
+在Kibana的DSL界面手动创建：
+PUT agg_index_v2
+{
+    "mappings": {
+        "properties": {
+          "sampler_label": {
+            "type": "keyword"
+          },
+          "aggregate_report_count": {
+            "type" : "long"
+          },
+          "average": {
+            "type": "long"
+          },
+          "aggregate_report_median": {
+            "type": "long"
+          },
+          "aggregate_report_90%_line": {
+            "type": "long"
+          },
+          "aggregate_report_min": {
+            "type": "long"
+          },
+          "aggregate_report_max": {
+           "type": "long"
+          },
+	        "aggregate_report_error%": {
+	        "type": "long"
+	        },
+          "aggregate_report_rate": {
+            "type": "long"
+          },
+          "aggregate_report_bandwidth": {
+            "type": "long"
+          },
+          "aggregate_report_stddev": {
+            "type": "long"
+          }
+      }
+}
+}
+</agg_index_v2> 
+_______________________________________________
+<filter_index>
+对每批导入的数据打上打上时间标签
+在Kibana的DSL界面手动创建：
+PUT filter_index
+{
+    "mappings": {
+        "properties": {
+          "sampler_label": {
+            "type": "keyword"
+          },
+          "aggregate_report_count": {
+            "type" : "long"
+          },
+          "average": {
+            "type": "long"
+          },
+          "aggregate_report_median": {
+            "type": "long"
+          },
+          "aggregate_report_90%_line": {
+            "type": "long"
+          },
+          "aggregate_report_min": {
+            "type": "long"
+          },
+          "aggregate_report_max": {
+           "type": "long"
+          },
+	        "aggregate_report_error%": {
+	        "type": "long"
+	        },
+          "aggregate_report_rate": {
+            "type": "long"
+          },
+          "aggregate_report_bandwidth": {
+            "type": "long"
+          },
+          "aggregate_report_stddev": {
+            "type": "long"
+          },
+          "timestamp": {
+            "type": "keyword"
+          },
+          "startTiemstamp": {
+            "type": "double"
+          },
+          "endTimestamp": {
+            "type": "double"
+          },
+          "inputId": {
+            "type": "long"
+          },
+          "sdEndTime": {
+            "type": "keyword"
+          }
+          
+          
+      }
+}
+}
+</filter_index>
+_________________________________________________________________________________________________________________
+<timetable_index>
+每导入一批就将导入数据的endtimestamp 和 inputid 存入本表 (程序自动创建)  存储每次导入inputId和 endtimestamp以及starttimestamp 的表
+</timetable_index>
+_________________________________________________________________________________________________________________
+<tmptime_index>
+保存最近导入的一批数据 7 条 （程序自建，自动刷新）
+</tmptime_index>
+_________________________________________________________________________________________________________________
+<agg_index3>
+用于存储计算的值，包括current ,baseline, difference(程序自动创建，自动刷新)
+</agg_index3>
